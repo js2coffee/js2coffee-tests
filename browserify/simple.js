@@ -1,1 +1,1 @@
-module.exports = "Hello world";
+exports.msg = "Hello " + require('./name');
