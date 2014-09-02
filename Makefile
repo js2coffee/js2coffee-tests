@@ -6,6 +6,7 @@ uglifyjs   = ./node_modules/.bin/uglifyjs
 
 test: \
 	browserify@test \
+	eventemitter2@test \
 	qs@test
 
 # ----
