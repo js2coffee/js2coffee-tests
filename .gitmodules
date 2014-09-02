@@ -1,0 +1,6 @@
+[submodule "underscore"]
+	path = underscore
+	url = https://github.com/jashkenas/underscore.git
+[submodule "qs"]
+	path = qs
+	url = https://github.com/hapijs/qs.git
