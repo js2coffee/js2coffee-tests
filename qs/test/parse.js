@@ -1,7 +1,7 @@
 // Load modules
 
 var Lab = require('lab');
-var Qs = require('../');
+var Qs = require('../build.out.js');
 
 
 // Declare internals
