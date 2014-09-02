@@ -10,35 +10,49 @@ test: \
 
 # ----
 browserify@test: \
-	browserify/build.js \
-	browserify/build.out.coffee \
+	browserify/build.1.js \
+	browserify/build.2.coffee \
 	browserify/build.out.js
 	# 4: testing...
 	@cd browserify && npm install && npm test
 
-browserify/build.js: browserify/simple.js dummy
-	# [browserify] 1: browserify...
+browserify/build.1.js: browserify/simple.js
+
+%/build.1.js: %/simple.js
+	# 1: bundle... [$<      > $@]
 	@$(browserify) -s mod $< | $(uglifyjs) -b > $@
 
 # ----
+eventemitter2@test: \
+	eventemitter2/build.1.js \
+	eventemitter2/build.2.coffee \
+	eventemitter2/build.out.js
+	# 4: testing...
+	@cd eventemitter2 && npm install && npm test
+
+eventemitter2/build.1.js: eventemitter2/index.js
+	# 1: bundle... [$<       > $@]
+	@$(browserify) -s eventemitter2 $< | $(uglifyjs) -b > $@
+
+# ----
 qs@test: \
-	qs/build.js \
-	qs/build.out.coffee \
+	qs/build.1.js \
+	qs/build.2.coffee \
 	qs/build.out.js
 	# 4: testing...
 	@cd qs && npm install && npm test
 
-qs/build.js: qs/index.js
-	# [qs] 1: browserify...
+qs/build.1.js: qs/index.js
+	# 1: bundle... [$<       > $@]
 	@$(browserify) -s qs $< | $(uglifyjs) -b > $@
 
 # ----
-%.out.js: %.out.coffee
-	# 3: coffee...
+%.out.js: %.2.coffee
+	# 3: coffee... [$< > $@]
 	@$(coffee) -p $< > $@
 
-%.out.coffee: %.js
-	# 2: js2c...
+%.2.coffee: %.1.js
+	# 2: js2c...   [$<     > $@]
 	@$(js2c) $< > $@
 
 .PHONY: dummy

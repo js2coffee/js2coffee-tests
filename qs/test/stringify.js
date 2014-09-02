@@ -114,12 +114,12 @@ describe('#stringify', function () {
         done();
     });
 
-    it('stringifies buffer values', function (done) {
+    // it('stringifies buffer values', function (done) {
 
-        expect(Qs.stringify({ a: new Buffer('test') })).to.equal('a=test');
-        expect(Qs.stringify({ a: { b: new Buffer('test') } })).to.equal('a%5Bb%5D=test');
-        done();
-    });
+    //     expect(Qs.stringify({ a: new Buffer('test') })).to.equal('a=test');
+    //     expect(Qs.stringify({ a: { b: new Buffer('test') } })).to.equal('a%5Bb%5D=test');
+    //     done();
+    // });
 
     it('stringifies an object using an alternative delimiter', function (done) {
 
